@@ -3,26 +3,28 @@
 class Solution {
 public:
     void setZeroes(vector<vector<int>>& matrix) {
-        size_t rows = matrix.size(), cols = matrix[0].size();
-        // 记录哪些行和列需要置零
-        vector<bool> row(rows, false), col(cols, false);
-        for(size_t i = 0; i < rows; ++i) {
-            for(size_t j = 0; j < cols; ++j) {
-                if(matrix[i][j] == 0)
-                    row[i] = col[j] = true;
+        size_t row = matrix.size(), col = matrix[0].size();
+
+        vector<bool> r(row, false), c(col, false);
+
+        for(size_t i = 0; i < row; i++) {
+            for(size_t j = 0; j < col; j++) {
+                if(matrix[i][j] == 0) {
+                    r[i] = c[j] = true;
+                }
             }
         }
 
-        for(size_t i = 0; i < rows; ++i) {
-            for(size_t j = 0; j < cols; ++j)
-                if(row[i] || col[j]) {
+        for(size_t i = 0; i < row; i++) {
+            for(size_t j = 0; j < col; j++) {
+                if(r[i] || c[j])
                     matrix[i][j] = 0;
-                }
+            }
         }
     }
 };
 
-TEST_CASE("Check Solution setZeroes method work successfully") {
+TEST_CASE("Check Solution setZeroes method work successfully!") {
     Solution solution;
     vector<vector<int>> inputParm;
 

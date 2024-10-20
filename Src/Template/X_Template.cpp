@@ -22,7 +22,7 @@ TEST_CASE("Check Solution test method work successfully") {
                 }
             )
         );
-    // clang-format on;
+    // clang-format on
 
     REQUIRE(solution.test(LeftParm, RightParm) == result);
 }

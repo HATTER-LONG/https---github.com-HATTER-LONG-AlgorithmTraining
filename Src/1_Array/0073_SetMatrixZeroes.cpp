@@ -1,45 +1,61 @@
 #include "Tools/Tools.hpp"
 
-#include <cmath>
 class Solution {
 public:
-    vector<int> findDiagonalOrder(vector<vector<int>>& matrix) {
-        vector<int> result;
-        if(matrix.empty() || matrix[0].empty())
-            return result;
-        size_t row = matrix.size();                 // 行数
-        size_t col = matrix[0].size();              // 列数
-        for(size_t i = 0; i < row + col - 1; i++) { // 对角线的个数
-            if(i % 2 == 0) {                        // 偶数对角线，向右上
-                for(int x = min(i, row - 1); x >= max(0, static_cast<int>(i - col + 1));
-                    x--) // 从下往上遍历
-                    result.push_back(matrix[x][i - x]);
-            } else { // 奇数，向左下
-                for(int x = max(0, static_cast<int>(i - col + 1));
-                    x <= static_cast<int>(min(i, row - 1)); x++) // 从上往下遍历
-                    result.push_back(matrix[x][i - x]);
+    void setZeroes(vector<vector<int>>& matrix) {
+        size_t rows = matrix.size(), cols = matrix[0].size();
+        // 记录哪些行和列需要置零
+        vector<bool> row(rows, false), col(cols, false);
+        for(size_t i = 0; i < rows; ++i) {
+            for(size_t j = 0; j < cols; ++j) {
+                if(matrix[i][j] == 0)
+                    row[i] = col[j] = true;
             }
         }
-        return result;
+
+        for(size_t i = 0; i < rows; ++i) {
+            for(size_t j = 0; j < cols; ++j)
+                if(row[i] || col[j]) {
+                    matrix[i][j] = 0;
+                }
+        }
     }
 };
 
-TEST_CASE("Check Solution findDiagonalOrder method work successfully") {
+TEST_CASE("Check Solution setZeroes method work successfully") {
     Solution solution;
     vector<vector<int>> inputParm;
 
-    vector<int> resultParm;
+    vector<vector<int>> resultParm;
 
-    tie(inputParm, resultParm) = GENERATE(table<vector<vector<int>>, vector<int>>({
+    tie(inputParm, resultParm) = GENERATE(table<vector<vector<int>>, vector<vector<int>>>({
         make_tuple(
             vector<vector<int>>{
-                {1, 2, 3},
-                {4, 5, 6},
-                {7, 8, 9},
+                {1, 1, 1},
+                {1, 0, 1},
+                {1, 1, 1},
             },
-            vector<int>{1, 2, 4, 7, 5, 3, 6, 8, 9}),
+            vector<vector<int>>{
+                {1, 0, 1},
+                {0, 0, 0},
+                {1, 0, 1},
+            }),
+        make_tuple(
+            vector<vector<int>>{
+                {0, 1, 9, 0},
+                {2, 4, 8, 10},
+                {13, 3, 6, 7},
+                {15, 14, 12, 16},
+            },
+            vector<vector<int>>{
+                {0, 0, 0, 0},
+                {0, 4, 8, 0},
+                {0, 3, 6, 0},
+                {0, 14, 12, 0},
+            }),
     }));
 
     CAPTURE(inputParm, resultParm);
-    REQUIRE_THAT(solution.findDiagonalOrder(inputParm), Catch::Matchers::Equals(resultParm));
+    solution.setZeroes(inputParm);
+    REQUIRE_THAT(inputParm, Catch::Matchers::Equals(resultParm));
 }
