@@ -3,6 +3,7 @@ find_package(Catch2 REQUIRED CONFIG)
 FILE(GLOB SRCFILELIST
     "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/Base/*.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/Sort/*.cpp"
 )
 
 add_executable(1_Array ${SRCFILELIST})
