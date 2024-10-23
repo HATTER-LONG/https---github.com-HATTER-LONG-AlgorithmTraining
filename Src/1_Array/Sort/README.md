@@ -18,3 +18,7 @@
 4. 归并排序--[code](./merge_sort.cpp)：采用分治法，将数组分为两部分，分别排序，然后合并。时间复杂度为 O(nlogn)，空间复杂度为 O(n)，稳定排序。
 
 ![merge](../../../Img/Sort/mergeSort.png)
+
+5. 快速排序--[code](./quick_sort.cpp)：通过一趟排序将待排序数组分割成独立的两部分，其中一部分的所有元素都比另一部分的所有元素小，然后分别对这两部分继续进行排序。时间复杂度为 O(nlogn)，空间复杂度为 O(logn)，不稳定排序。
+
+![quick](../../../Img/Sort/quickSort.png)

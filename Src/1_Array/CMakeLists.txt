@@ -4,6 +4,7 @@ FILE(GLOB SRCFILELIST
     "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/Base/*.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/Sort/*.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/BinarySearch/*.cpp"
 )
 
 add_executable(1_Array ${SRCFILELIST})
