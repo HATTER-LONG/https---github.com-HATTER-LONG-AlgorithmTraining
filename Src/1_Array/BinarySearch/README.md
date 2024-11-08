@@ -179,3 +179,24 @@ public:
     - 每行的元素从左到右升序排列。
     - 每列的元素从上到下升序排列。
     - 解题思路：从右上角开始查找，如果 target 小于当前值，则向左移动，如果 target 大于当前值，则向下移动。
+
+
+### 二份答案题目
+
+1. [0069\_x 的平方根](https://leetcode.cn/problems/sqrtx/)--[code](./0069_sqrtx.cpp)：实现 int sqrt(int x) 函数。计算并返回 x 的平方根，其中 x 是非负整数。
+    - 解题思路：使用二分法查找即可，遍历0到输入的数之间，谁 1.0 * mid * mid 等于目标即可。否则返回 right 即是最接近值。
+
+2. [0287\_寻找重复数](https://leetcode.cn/problems/find-the-duplicate-number/description/)--[code](./0287_find-the-duplicate-number.cpp)：给定一个包含 n + 1 个整数的数组 nums，其数字都在 1 到 n 之间（包括 1 和 n），可知至少存在一个重复的整数。假设只有一个重复的整数，找出这个重复的数。
+    - 解题思路：使用二分法查找，遍历 1 到 n 之间的数，统计小于等于 mid 的数的个数，如果个数大于 mid，则说明重复的数在 1 到 mid 之间，否则在 mid + 1 到 n 之间。
+
+3. [0050\_Pow(x, n)](https://leetcode.cn/problems/powx-n/description/)--[code](./0050_powx-n.cpp)：实现 pow(x, n) ，即计算 x 的 n 次幂函数。
+    - 解题思路：快速幂算法（二分幂算法）使用二分法查找，将 n 分解为二进制数，然后计算 x 的 2^0, 2^1, 2^2, ... 2^k 次幂，然后将其相乘即可。
+
+4. [0367\_有效的完全平方数](https://leetcode.cn/problems/valid-perfect-square/description/)--[code](./0367_valid-perfect-square.cpp)：给定一个正整数 num，编写一个函数，如果 num 是一个完全平方数，则返回 True，否则返回 False。
+    - 解题思路：使用二分法查找，遍历 1 到 num 之间的数，判断 mid * mid 是否等于 num，如果等于则返回 true，否则返回 false。
+
+5. [1300\_转变数组后最接近目标值的数组和](https://leetcode.cn/problems/sum-of-mutated-array-closest-to-target/description/)--[code](./1300_sum-of-mutated-array-closest-to-target.cpp)：给你一个整数数组 arr 和一个目标值 target，你可以按任意顺序选择 arr 中的整数，每个整数最多可以使用一次。并且在数组中选择一些整数，使得它们的和等于 target。你要找出最接近 target 的数值，返回最接近 target 的和。
+    - 解题思路：使用二分法查找，遍历 1 到 max(arr) 之间的数，计算数组和，然后判断相邻 mid 是否小于 target，如果小于则更新 left 为 mid + 1，否则更新 right 为 mid。
+
+6. [0400\_第 N 位数字](https://leetcode.cn/problems/nth-digit/description/)--[code](./0400_nth-digit.cpp)：给定一个正整数 n，找出 n 位数字中的第 n 位。
+    - 解题思路：使用二分法查找，遍历 1 到 n 之间的数，计算每个数的位数，然后判断 mid 是否小于 n，如果小于则更新 left 为 mid + 1，否则更新 right 为 mid。
